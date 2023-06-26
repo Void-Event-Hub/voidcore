@@ -17,7 +17,7 @@ public class GetPatronsTask extends Thread {
 
     @Override
     public void run() {
-        String connectionString = "mongodb+srv://user:JLJI9iSQuYi6rvhG@cluster0.t7aelwd.mongodb.net/?retryWrites=true&w=majority";
+        String connectionString = "";
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
                 .build();
