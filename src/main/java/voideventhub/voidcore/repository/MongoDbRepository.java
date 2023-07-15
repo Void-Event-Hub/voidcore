@@ -73,25 +73,26 @@ public class MongoDbRepository implements Repository {
 
     @Override
     public List<UUID> getPatrons() {
-        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
-            MongoDatabase database = mongoClient.getDatabase(voidDbName);
-
-            var patrons = database.getCollection("patrons").find();
-
-            return patrons.map(patron -> (long) patron.get("user_id"))
-                    .map(
-                            patronUserId -> (String) database.getCollection("minecraft-profiles")
-                                    .find(new Document("user_id", patronUserId))
-                                    .first()
-                                    .get("uuid")
-                    )
-                    .map(UUID::fromString)
-                    .into(new ArrayList<>());
-        } catch (Exception e) {
-            VoidCore.LOGGER.info("Failed to get patrons from database");
-            e.printStackTrace();
-            return List.of();
-        }
+//        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+//            MongoDatabase database = mongoClient.getDatabase(voidDbName);
+//
+//            var patrons = database.getCollection("patrons").find();
+//
+//            return patrons.map(patron -> (long) patron.get("user_id"))
+//                    .map(
+//                            patronUserId -> (String) database.getCollection("minecraft-profiles")
+//                                    .find(new Document("user_id", patronUserId))
+//                                    .first()
+//                                    .get("uuid")
+//                    )
+//                    .map(UUID::fromString)
+//                    .into(new ArrayList<>());
+//        } catch (Exception e) {
+//            VoidCore.LOGGER.info("Failed to get patrons from database");
+//            e.printStackTrace();
+//            return List.of();
+//        }
+        return new ArrayList<>();
     }
 
     @Override
