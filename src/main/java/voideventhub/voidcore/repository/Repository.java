@@ -1,5 +1,7 @@
 package voideventhub.voidcore.repository;
 
+import voideventhub.voidcore.repository.models.EventApplication;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +22,8 @@ public interface Repository {
     List<UUID> getPatrons();
 
     List<UUID> getAcceptedApplicants();
+
+    List<EventApplication> getApplications();
 
 
 

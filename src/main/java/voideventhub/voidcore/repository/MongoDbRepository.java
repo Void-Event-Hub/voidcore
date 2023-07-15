@@ -1,14 +1,23 @@
 package voideventhub.voidcore.repository;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
 import voideventhub.voidcore.VoidCore;
+import voideventhub.voidcore.repository.models.EventApplication;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 
 public class MongoDbRepository implements Repository {
 
@@ -23,6 +32,7 @@ public class MongoDbRepository implements Repository {
 
     private final String voidDbName = "voideventhub-1076531218830610502";
     private final String connectionString;
+    private final MongoClientSettings clientSettings;
 
     private MongoDbRepository() {
         this.connectionString = "mongodb+srv://" +
@@ -30,6 +40,16 @@ public class MongoDbRepository implements Repository {
                 ":" +
                 VoidCore.CONFIG.mongodbPassword() +
                 "@cluster0.t7aelwd.mongodb.net/?retryWrites=true&w=majority";
+        CodecRegistry codecRegistry = MongoClientSettings.getDefaultCodecRegistry();
+        CodecRegistry pojoCodecRegistry = fromProviders(
+                PojoCodecProvider.builder().automatic(true).build(),
+                new LongCodecProvider()
+        );
+        CodecRegistry combinedRegistry = CodecRegistries.fromRegistries(codecRegistry, pojoCodecRegistry);
+        this.clientSettings = MongoClientSettings.builder()
+                .applyConnectionString(new ConnectionString(connectionString))
+                .codecRegistry(combinedRegistry)
+                .build();
     }
 
     @Override
@@ -80,5 +100,17 @@ public class MongoDbRepository implements Repository {
         return null;
     }
 
-
+    @Override
+    public List<EventApplication> getApplications() {
+        try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
+            MongoDatabase database = mongoClient.getDatabase(voidDbName);
+            MongoCollection<EventApplication> applications = database.getCollection("applications", EventApplication.class);
+//            applications.find().forEach(app -> System.out.println(app.get("user_id").getClass()));
+            return applications.find().into(new ArrayList<>());
+        } catch (Exception e) {
+            VoidCore.LOGGER.info("Failed to get Event Applications from database");
+            e.printStackTrace();
+            return List.of();
+        }
+    }
 }
