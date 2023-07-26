@@ -22,6 +22,10 @@ public class SomeService {
         playerAction(playerId, PlayerAction.JOIN_SERVER);
     }
 
+    public void playerLeave(UUID uuid) {
+        playerAction(uuid, PlayerAction.LEAVE_SERVER);
+    }
+
     public void playerAction(UUID playerId, PlayerAction action) {
         CompletableFuture.supplyAsync(() -> {
             Repository repository = MongoDbRepository.getInstance();
@@ -40,4 +44,5 @@ public class SomeService {
             }
         }, playerManager.getServer());
     }
+
 }

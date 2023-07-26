@@ -12,26 +12,32 @@ base {
 
 repositories {
 	maven { url 'https://maven.wispforest.io' }
+	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
+	implementation("com.github.LlamaLad7:MixinExtras:0.1.1")
+	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
-	// Uncomment the following line to enable the deprecated Fabric API modules. 
-	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
-	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+//	MongoDb
 	implementation "org.mongodb:mongodb-driver-sync:${project.mongodb_version}"
+	include "org.mongodb:mongodb-driver-sync:${project.mongodb_version}"
+	include "org.mongodb:mongodb-driver-core:${project.mongodb_version}"
+	include "org.mongodb:bson:${project.mongodb_version}"
 
+//	owo lib
 	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
 	annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
 	include "io.wispforest:owo-sentinel:${project.owo_version}"
+
+//	Gecko lib
+	modImplementation "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
 }
 
 processResources {
@@ -77,4 +83,5 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+
 }

@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "voideventhub.voidcore.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ExampleMixin"
+  ],
+  "client": [
+    "ArmorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "plugin": "voideventhub.voidcore.VoidCoreMixinConfigPlugin"
+}

@@ -67,32 +67,31 @@ public class MongoDbRepository implements Repository {
         } catch (Exception e) {
             VoidCore.LOGGER.info("Failed to write player action to database. player: {}, action: {}", uuid, playerAction);
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
     public List<UUID> getPatrons() {
-//        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
-//            MongoDatabase database = mongoClient.getDatabase(voidDbName);
-//
-//            var patrons = database.getCollection("patrons").find();
-//
-//            return patrons.map(patron -> (long) patron.get("user_id"))
-//                    .map(
-//                            patronUserId -> (String) database.getCollection("minecraft-profiles")
-//                                    .find(new Document("user_id", patronUserId))
-//                                    .first()
-//                                    .get("uuid")
-//                    )
-//                    .map(UUID::fromString)
-//                    .into(new ArrayList<>());
-//        } catch (Exception e) {
-//            VoidCore.LOGGER.info("Failed to get patrons from database");
-//            e.printStackTrace();
-//            return List.of();
-//        }
-        return new ArrayList<>();
+        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+            MongoDatabase database = mongoClient.getDatabase(voidDbName);
+
+            var patrons = database.getCollection("patrons").find();
+
+            return patrons.map(patron -> (long) patron.get("user_id"))
+                    .map(
+                            patronUserId -> (String) database.getCollection("minecraft-profiles")
+                                    .find(new Document("user_id", patronUserId))
+                                    .first()
+                                    .get("uuid")
+                    )
+                    .map(UUID::fromString)
+                    .into(new ArrayList<>());
+        } catch (Exception e) {
+            VoidCore.LOGGER.info("Failed to get patrons from database");
+            e.printStackTrace();
+            return List.of();
+        }
     }
 
     @Override

@@ -17,10 +17,13 @@
 	"entrypoints": {
 		"main": [
           "voideventhub.voidcore.VoidCore"
+		],
+		"client": [
+			"voideventhub.voidcore.VoidCoreClient"
 		]
 	},
 	"mixins": [
-		"void-core.json"
+		"void-core.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14.19",

@@ -10,7 +10,7 @@ public class EntityUnloadEvent {
         ServerEntityEvents.ENTITY_UNLOAD.register((entity, world) -> {
             if (entity instanceof ServerPlayerEntity player) {
                 SomeService service = new SomeService(world.getServer().getPlayerManager());
-                service.playerJoin(player.getUuid());
+                service.playerLeave(player.getUuid());
             }
         });
     }
