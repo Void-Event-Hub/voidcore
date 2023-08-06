@@ -1,6 +1,5 @@
 package voideventhub.voidcore;
 
-import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -17,7 +16,6 @@ public class VoidCore implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        MixinExtrasBootstrap.init();
         VPSEvents.register();
         VCItems.register();
     }
