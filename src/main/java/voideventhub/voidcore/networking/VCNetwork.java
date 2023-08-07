@@ -9,13 +9,6 @@ import voideventhub.voidcore.networking.packets.UpdateCosmeticsS2CPacket;
 
 public class VCNetwork {
 
-    public static void registerC2SPackets() {
-    }
-
-    public static void registerS2CPackets() {
-        UpdateCosmeticsS2CPacket.register();
-    }
-
     /**
      * Updates all players' client cosmetic data.
      * This should be called everytime any player's cosmetic data is changed.
@@ -28,5 +21,12 @@ public class VCNetwork {
         for (ServerPlayerEntity p : world.getPlayers()) {
             ServerPlayNetworking.send(p, UpdateCosmeticsS2CPacket.ID, buf);
         }
+    }
+
+    public static void registerC2SPackets() {
+    }
+
+    public static void registerS2CPackets() {
+        UpdateCosmeticsS2CPacket.register();
     }
 }

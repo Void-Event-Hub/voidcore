@@ -29,6 +29,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * Mixin for ArmorFeatureRenderer.
+ * Allows us to render different armor models than the one the player has equipped.
+ */
 @Environment(EnvType.CLIENT)
 @Mixin(value = ArmorFeatureRenderer.class, priority = 650)
 public abstract class ArmorMixin<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {

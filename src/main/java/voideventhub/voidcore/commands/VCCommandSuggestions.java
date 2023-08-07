@@ -10,12 +10,20 @@ import java.util.concurrent.CompletableFuture;
 
 public class VCCommandSuggestions {
 
+    /**
+     * Suggests cosmetics
+     */
     public static CompletableFuture<Suggestions> cosmetics(SuggestionsBuilder builder) {
-        return CommandSource.suggestMatching(enumToStringArray(CosmeticType.values()), builder);
+        String[] options = enumToStringArray(CosmeticType.values());
+        return CommandSource.suggestMatching(options, builder);
     }
 
+    /**
+     * Suggests equipment slots
+     */
     public static CompletableFuture<Suggestions> equipmentSlots(SuggestionsBuilder builder) {
-        return CommandSource.suggestMatching(enumToStringArray(EquipmentSlot.values()), builder);
+        String[] options = enumToStringArray(EquipmentSlot.values());
+        return CommandSource.suggestMatching(options, builder);
     }
 
     private static String[] enumToStringArray(Enum<?>[] enums) {

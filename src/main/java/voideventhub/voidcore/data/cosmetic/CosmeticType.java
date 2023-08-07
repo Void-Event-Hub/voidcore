@@ -23,6 +23,11 @@ public enum CosmeticType {
         this.slots.put(EquipmentSlot.FEET, feet);
     }
 
+    /**
+     * Returns the corresponding item for the given slot.
+     * @param slot equipment slot
+     * @return item
+     */
     public Item get(EquipmentSlot slot) {
         return slots.get(slot);
     }
