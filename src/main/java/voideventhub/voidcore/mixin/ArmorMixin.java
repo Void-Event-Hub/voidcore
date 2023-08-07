@@ -21,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import voideventhub.voidcore.client.ClientCosmeticData;
+import voideventhub.voidcore.data.cosmetic.Cosmetic;
 import voideventhub.voidcore.item.VCItems;
 
 import java.util.LinkedList;
@@ -121,13 +123,15 @@ public abstract class ArmorMixin<T extends LivingEntity, M extends BipedEntityMo
             return ItemStack.EMPTY.getItem();
         }
 
-        return switch (slot) {
-            case MAINHAND, OFFHAND -> Items.DIAMOND_SWORD;
-            case FEET -> VCItems.AMETHYST_BOOTS;
-            case LEGS -> VCItems.AMETHYST_LEGGINGS;
-            case CHEST -> VCItems.AMETHYST_CHESTPLATE;
-            case HEAD -> VCItems.AMETHYST_HELMET;
-        };
+        var cosmeticOpt = ClientCosmeticData.getPlayerCosmetic(entity.getUuid());
+
+        if (cosmeticOpt.isEmpty()) {
+            return entity.getEquippedStack(slot).getItem();
+        }
+
+        Cosmetic cosmetic = cosmeticOpt.get();
+
+        return cosmetic.get(slot).get(slot);
     }
 
 }
