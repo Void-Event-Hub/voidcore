@@ -36,7 +36,7 @@ public class AmethystArmorItem extends ArmorItem implements IAnimatable {
 
         // Always loop the animation but later on in this method we'll decide whether or
         // not to actually play it
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.gecko_armor.animate", ILoopType.EDefaultLoopTypes.LOOP));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
 
         // If the living entity is an armorstand just play the animation nonstop
         if (livingEntity instanceof ArmorStandEntity) {
