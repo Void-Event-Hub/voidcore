@@ -19,7 +19,7 @@
           "voideventhub.voidcore.VoidCore"
 		],
 		"client": [
-			"voideventhub.voidcore.VoidCoreClient"
+          "voideventhub.voidcore.client.VoidCoreClient"
 		]
 	},
 	"mixins": [

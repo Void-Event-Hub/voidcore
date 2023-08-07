@@ -1,7 +1,8 @@
-package voideventhub.voidcore;
+package voideventhub.voidcore.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
+import voideventhub.voidcore.VoidCore;
 import voideventhub.voidcore.entity.client.AmethystArmorRenderer;
 import voideventhub.voidcore.item.VCItems;
 
