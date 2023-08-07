@@ -1,3 +1,6 @@
 {
-  "item.void-core.amethyst_helmet": "Amethyst Helmet"
+  "item.void-core.amethyst_helmet": "Amethyst Helmet",
+  "item.void-core.amethyst_chestplate": "Amethyst Chestplate",
+  "item.void-core.amethyst_leggings": "Amethyst Leggings",
+  "item.void-core.amethyst_boots": "Amethyst Boots"
 }
