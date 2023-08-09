@@ -1,11 +1,14 @@
-package voideventhub.voidcore.client;
+package voideventhub.voidcore.client.data;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import voideventhub.voidcore.data.cosmetic.Cosmetic;
 
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
 
+@Environment(EnvType.CLIENT)
 public class ClientCosmeticData {
 
     private static HashMap<UUID, Cosmetic> playerCosmetics = new HashMap<>();

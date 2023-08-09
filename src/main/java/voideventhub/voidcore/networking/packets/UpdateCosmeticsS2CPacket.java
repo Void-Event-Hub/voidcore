@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import voideventhub.voidcore.VoidCore;
-import voideventhub.voidcore.client.ClientCosmeticData;
+import voideventhub.voidcore.client.data.ClientCosmeticData;
 import voideventhub.voidcore.data.cosmetic.Cosmetic;
 
 import java.util.HashMap;
