@@ -6,7 +6,9 @@
     "ArmorMixin"
   ],
   "client": [
-    "AbstractClientPlayerEntityMixin"
+    "AbstractClientPlayerEntityMixin",
+    "ElytraMixin",
+    "HeldItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
