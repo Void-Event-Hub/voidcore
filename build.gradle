@@ -47,6 +47,13 @@ dependencies {
 //	Gecko lib
     modImplementation "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
 
+// Cardinal Components
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_version}"
+
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}"
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_version}"
+
 }
 
 processResources {

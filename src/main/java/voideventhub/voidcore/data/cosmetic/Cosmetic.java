@@ -8,6 +8,7 @@ import java.util.HashMap;
 /**
  * Holds the cosmetic layout of a player.
  */
+@Deprecated
 public class Cosmetic {
 
     private final HashMap<EquipmentSlot, CosmeticType> cosmetics;

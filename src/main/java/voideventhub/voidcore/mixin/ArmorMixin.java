@@ -21,8 +21,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import voideventhub.voidcore.client.data.ClientCosmeticData;
-import voideventhub.voidcore.data.cosmetic.Cosmetic;
+import voideventhub.voidcore.cardinal.CosmeticComponent;
+import voideventhub.voidcore.cardinal.VCComponents;
 import voideventhub.voidcore.item.VCItems;
 
 import java.util.LinkedList;
@@ -58,24 +58,26 @@ public abstract class ArmorMixin<T extends LivingEntity, M extends BipedEntityMo
         ItemStack equippedStack = entity.getEquippedStack(slot);
         ItemStack cosmeticStack = new ItemStack(getCosmeticArmor(slot, entity));
 
-        if(!cosmeticStack.isEmpty()) {
-            ArmorRenderer renderer = ArmorRendererRegistryImpl.get(cosmeticStack.getItem());
+        if (cosmeticStack.isEmpty()) {
+            return;
+        }
 
-            if (renderer != null) {
+        ArmorRenderer renderer = ArmorRendererRegistryImpl.get(cosmeticStack.getItem());
+
+        if (renderer != null) {
+            renderList.add(() -> {
+                renderer.render(matrices, vertexConsumers, cosmeticStack, entity, slot, light,
+                        (BipedEntityModel<LivingEntity>) getContextModel());
+                return true;
+            });
+            ci.cancel();
+        } else {
+            if(ArmorRendererRegistryImpl.get(equippedStack.getItem()) != null) {
                 renderList.add(() -> {
-                    renderer.render(matrices, vertexConsumers, cosmeticStack, entity, slot, light,
-                            (BipedEntityModel<LivingEntity>) getContextModel());
+                    cosmeticarmor$renderArmor(matrices, vertexConsumers, cosmeticStack, slot, light, model);
                     return true;
                 });
                 ci.cancel();
-            } else {
-                if(ArmorRendererRegistryImpl.get(equippedStack.getItem()) != null) {
-                    renderList.add(() -> {
-                        cosmeticarmor$renderArmor(matrices, vertexConsumers, cosmeticStack, slot, light, model);
-                        return true;
-                    });
-                    ci.cancel();
-                }
             }
         }
     }
@@ -122,20 +124,14 @@ public abstract class ArmorMixin<T extends LivingEntity, M extends BipedEntityMo
     }
 
     @Unique
-    private Item getCosmeticArmor(EquipmentSlot slot, LivingEntity entity) {
+    private @Nullable Item getCosmeticArmor(EquipmentSlot slot, LivingEntity entity) {
         if (entity.getEquippedStack(slot).isEmpty()) {
-            return ItemStack.EMPTY.getItem();
+            return null;
         }
 
-        var cosmeticOpt = ClientCosmeticData.getPlayerCosmetic(entity.getUuid());
+        CosmeticComponent cosmetics = entity.getComponent(VCComponents.COSMETIC);
 
-        if (cosmeticOpt.isEmpty()) {
-            return entity.getEquippedStack(slot).getItem();
-        }
-
-        Cosmetic cosmetic = cosmeticOpt.get();
-
-        return cosmetic.get(slot).get(slot);
+        return cosmetics.getArmorCosmetic(slot);
     }
 
 }

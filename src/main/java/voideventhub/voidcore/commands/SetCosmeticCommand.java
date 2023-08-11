@@ -9,9 +9,11 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import voideventhub.voidcore.cardinal.CosmeticComponent;
+import voideventhub.voidcore.cardinal.VCComponents;
 import voideventhub.voidcore.data.cosmetic.CosmeticManager;
 import voideventhub.voidcore.data.cosmetic.CosmeticType;
-import voideventhub.voidcore.networking.VCNetwork;
+import voideventhub.voidcore.item.VCItems;
 
 public class SetCosmeticCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -59,8 +61,8 @@ public class SetCosmeticCommand {
             return 0;
         }
 
-        manager.setPlayerCosmetics(player.getUuid(), slot, cosmetic);
-        VCNetwork.updatePlayersClientCosmeticData(world);
+        CosmeticComponent component = player.getComponent(VCComponents.COSMETIC);
+        component.setArmorCosmetic(slot, VCItems.AMETHYST_BOOTS);
 
         context.getSource().sendFeedback(Text.of("Set " + slot.name() + " to " + cosmetic.name()), false);
 

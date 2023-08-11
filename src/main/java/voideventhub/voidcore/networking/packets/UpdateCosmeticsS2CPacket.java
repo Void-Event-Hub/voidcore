@@ -10,6 +10,7 @@ import voideventhub.voidcore.data.cosmetic.Cosmetic;
 import java.util.HashMap;
 import java.util.UUID;
 
+@Deprecated
 public class UpdateCosmeticsS2CPacket {
 
     public static final Identifier ID = new Identifier(VoidCore.MOD_ID, "update_cosmetics");

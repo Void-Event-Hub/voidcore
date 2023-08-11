@@ -15,6 +15,7 @@ import java.util.UUID;
  * Manages the cosmetic data of all players.
  * Any changes to the cosmetic data of a player should be done through this class.
  */
+@Deprecated
 public class CosmeticManager extends PersistentState {
 
     private final HashMap<UUID, Cosmetic> playerCosmetics = new HashMap<>();

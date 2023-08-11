@@ -14,6 +14,7 @@ public class VCNetwork {
      * This should be called everytime any player's cosmetic data is changed.
      * @param world server world
      */
+    @Deprecated
     public static void updatePlayersClientCosmeticData(ServerWorld world) {
         CosmeticManager manager = CosmeticManager.get(world);
         PacketByteBuf buf = manager.toBuf();

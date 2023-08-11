@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "voidcore",
+	"id": "void-core",
 	"version": "${version}",
 	"name": "Void Core",
 	"description": "Main mod to interact with the Void Event hub discord",
@@ -16,10 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "voideventhub.voidcore.VoidCore"
+			"voideventhub.voidcore.VoidCore"
 		],
 		"client": [
-          "voideventhub.voidcore.client.VoidCoreClient"
+			"voideventhub.voidcore.client.VoidCoreClient"
+		],
+		"cardinal-components": [
+			"voideventhub.voidcore.cardinal.VCComponents"
 		]
 	},
 	"mixins": [
@@ -33,5 +36,11 @@
 	},
 	"suggests": {
 		"another-mod": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"void-core:patron",
+			"void-core:cosmetic"
+		]
 	}
 }
