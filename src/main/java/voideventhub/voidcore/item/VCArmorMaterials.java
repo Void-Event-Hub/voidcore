@@ -14,6 +14,9 @@ public enum VCArmorMaterials implements ArmorMaterial {
 
     AMETHYST("amethyst", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> {
         return Ingredient.ofItems(Items.NETHERITE_INGOT);
+    }),
+    KNIGHT("knight", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> {
+        return Ingredient.ofItems(Items.NETHERITE_INGOT);
     });
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
@@ -54,7 +57,7 @@ public enum VCArmorMaterials implements ArmorMaterial {
     }
 
     public Ingredient getRepairIngredient() {
-        return (Ingredient)this.repairIngredientSupplier.get();
+        return (Ingredient) this.repairIngredientSupplier.get();
     }
 
     public String getName() {

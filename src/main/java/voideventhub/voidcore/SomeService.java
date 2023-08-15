@@ -28,6 +28,10 @@ public class SomeService {
 
     public void playerAction(UUID playerId, PlayerAction action) {
         CompletableFuture.supplyAsync(() -> {
+            if (this.playerManager.getServer().isSingleplayer()) {
+                return null;
+            }
+
             Repository repository = MongoDbRepository.getInstance();
             repository.writePlayerAction(action, playerId);
 

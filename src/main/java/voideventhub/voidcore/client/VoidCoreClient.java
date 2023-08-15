@@ -4,6 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import voideventhub.voidcore.VoidCore;
 import voideventhub.voidcore.entity.client.AmethystArmorRenderer;
+import voideventhub.voidcore.entity.client.KnightArmorRenderer;
 import voideventhub.voidcore.item.VCItems;
 
 public class VoidCoreClient implements ClientModInitializer {
@@ -14,5 +15,11 @@ public class VoidCoreClient implements ClientModInitializer {
         GeoArmorRenderer.registerArmorRenderer(new AmethystArmorRenderer(), VCItems.AMETHYST_CHESTPLATE);
         GeoArmorRenderer.registerArmorRenderer(new AmethystArmorRenderer(), VCItems.AMETHYST_LEGGINGS);
         GeoArmorRenderer.registerArmorRenderer(new AmethystArmorRenderer(), VCItems.AMETHYST_BOOTS);
+
+        GeoArmorRenderer.registerArmorRenderer(new KnightArmorRenderer(), VCItems.KNIGHT_HELMET);
+        GeoArmorRenderer.registerArmorRenderer(new KnightArmorRenderer(), VCItems.KNIGHT_CHESTPLATE);
+        GeoArmorRenderer.registerArmorRenderer(new KnightArmorRenderer(), VCItems.KNIGHT_LEGGINGS);
+        GeoArmorRenderer.registerArmorRenderer(new KnightArmorRenderer(), VCItems.KNIGHT_BOOTS);
+
     }
 }
