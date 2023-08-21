@@ -16,6 +16,7 @@ import voideventhub.voidcore.VoidCore;
 import voideventhub.voidcore.cardinal.CosmeticComponent;
 import voideventhub.voidcore.cardinal.VCComponents;
 import voideventhub.voidcore.item.VCItems;
+import voideventhub.voidcore.networking.VCNetwork;
 
 import java.util.List;
 import java.util.Map;
@@ -89,17 +90,17 @@ public class CosmeticsScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private void setCosmetic(ArmorItem item) {
-        // TODO: communicate this to the server
         PlayerEntity player = this.client.player;
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(item.getSlotType(), item);
+        VCNetwork.updatePlayerCosmetics(player);
     }
 
     private void clearCosmetics() {
-        // TODO: see setCosmetic
         PlayerEntity player = this.client.player;
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.HEAD, null);
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.CHEST, null);
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.LEGS, null);
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.FEET, null);
+        VCNetwork.updatePlayerCosmetics(player);
     }
 }
