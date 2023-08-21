@@ -7,6 +7,7 @@ import voideventhub.voidcore.item.VCItems;
 
 import java.util.HashMap;
 
+@Deprecated
 public enum CosmeticType {
 
     NONE(ItemStack.EMPTY.getItem(), ItemStack.EMPTY.getItem(), ItemStack.EMPTY.getItem(), ItemStack.EMPTY.getItem()),
