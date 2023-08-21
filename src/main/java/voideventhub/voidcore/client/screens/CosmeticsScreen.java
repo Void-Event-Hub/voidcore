@@ -89,11 +89,13 @@ public class CosmeticsScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private void setCosmetic(ArmorItem item) {
+        // TODO: communicate this to the server
         PlayerEntity player = this.client.player;
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(item.getSlotType(), item);
     }
 
     private void clearCosmetics() {
+        // TODO: see setCosmetic
         PlayerEntity player = this.client.player;
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.HEAD, null);
         player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.CHEST, null);
