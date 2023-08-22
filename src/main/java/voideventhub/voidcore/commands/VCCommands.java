@@ -6,7 +6,6 @@ public class VCCommands {
 
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            SetCosmeticCommand.register(dispatcher);
         });
     }
 }

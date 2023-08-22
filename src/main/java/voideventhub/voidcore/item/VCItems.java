@@ -8,6 +8,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import voideventhub.voidcore.VoidCore;
 
+import java.util.List;
+import java.util.Map;
+
 public class VCItems {
 
     public static final ArmorItem AMETHYST_HELMET = (ArmorItem) registerItem("amethyst_helmet",
@@ -40,6 +43,38 @@ public class VCItems {
 
     public static void register() {
         VoidCore.LOGGER.info("Registering items");
+    }
+
+    public static final Map<CosmeticType, List<ArmorItem>> COSMETICS = Map.of(
+            CosmeticType.NONE, List.of(),
+            CosmeticType.KNIGHT, List.of(
+                    KNIGHT_HELMET,
+                    KNIGHT_CHESTPLATE,
+                    KNIGHT_LEGGINGS,
+                    KNIGHT_BOOTS
+            ),
+            CosmeticType.AMETHYST, List.of(
+                    AMETHYST_HELMET,
+                    AMETHYST_CHESTPLATE,
+                    AMETHYST_LEGGINGS,
+                    AMETHYST_BOOTS
+            )
+    );
+
+    public enum CosmeticType {
+        KNIGHT("knight"),
+        AMETHYST("amethyst"),
+        NONE("none");
+
+        private final String id;
+
+        CosmeticType(String id) {
+            this.id = id;
+        }
+
+        public String getId() {
+            return this.id;
+        }
     }
 
 }

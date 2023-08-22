@@ -88,16 +88,24 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
     public void readFromNbt(NbtCompound tag) {
         if (tag.contains("capeTexture")) {
             this.capeTexture = new Identifier(tag.getString("capeTexture"));
+        } else {
+            this.capeTexture = null;
         }
         if (tag.contains("elytraTexture")) {
             this.elytraTexture = new Identifier(tag.getString("elytraTexture"));
+        } else {
+            this.elytraTexture = null;
         }
 
         if (tag.contains("swordItem")) {
             this.swordItem = (SwordItem) Registry.ITEM.get(new Identifier(tag.getString("swordItem")));
+        } else {
+            this.swordItem = null;
         }
         if (tag.contains("shieldItem")) {
             this.shieldItem = (ShieldItem) Registry.ITEM.get(new Identifier(tag.getString("shieldItem")));
+        } else {
+            this.shieldItem = null;
         }
 
         readArmorCosmeticsFromNbt(tag);
@@ -133,6 +141,8 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
                 Identifier id = new Identifier(tag.getString(slot.getName()));
                 ArmorItem armorItem = (ArmorItem) Registry.ITEM.get(id);
                 this.armorCosmetics.put(slot, armorItem);
+            } else {
+                this.armorCosmetics.put(slot, null);
             }
         }
     }

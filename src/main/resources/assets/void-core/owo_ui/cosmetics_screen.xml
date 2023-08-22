@@ -1,0 +1,80 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.19/owo-ui.xsd">
+
+    <components>
+        <flow-layout direction="horizontal" id="container">
+
+            <children>
+                <label>
+                    <text>Cosmetics</text>
+                    <shadow>true</shadow>
+
+                    <positioning type="relative">50,5</positioning>
+                </label>
+
+                <flow-layout direction="vertical" id="cosmetic-selection">
+                    <children>
+                        <scroll direction="vertical">
+                            <flow-layout direction="vertical" id="cosmetics-list">
+                                <children>
+                                </children>
+                            </flow-layout>
+                            <sizing>
+                                <vertical method="fixed">190</vertical>
+                                <horizontal method="fixed">110</horizontal>
+                            </sizing>
+                        </scroll>
+                    </children>
+
+                    <surface>
+                        <flat>#C0101010</flat>
+                        <outline>#C0101022</outline>
+                    </surface>
+                    <padding>
+                        <all>5</all>
+                    </padding>
+                </flow-layout>
+
+            </children>
+
+            <vertical-alignment>center</vertical-alignment>
+            <horizontal-alignment>center</horizontal-alignment>
+
+            <surface>
+                <flat>#C0101010</flat>
+            </surface>
+        </flow-layout>
+    </components>
+
+    <templates>
+        <cosmetic>
+            <flow-layout direction="horizontal" id="{{cosmetic-id}}-container">
+                <children>
+                    <label>
+                        <positioning type="relative">15,50</positioning>
+                        <text>{{name}}</text>
+                        <shadow>true</shadow>
+                    </label>
+                    <button id="{{cosmetic-id}}-accept">
+                        <text> ✔ </text>
+                        <positioning type="relative">85,50</positioning>
+                    </button>
+                </children>
+
+                <surface>
+                    <panel dark="true"/>
+                </surface>
+
+                <sizing>
+                    <vertical method="fixed">50</vertical>
+                    <horizontal method="fixed">100</horizontal>
+                </sizing>
+
+                <margins>
+                    <vertical>1</vertical>
+                </margins>
+            </flow-layout>
+        </cosmetic>
+    </templates>
+
+</owo-ui>
