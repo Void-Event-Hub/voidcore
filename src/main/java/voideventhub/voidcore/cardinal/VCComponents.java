@@ -10,16 +10,16 @@ import voideventhub.voidcore.VoidCore;
 
 public class VCComponents implements EntityComponentInitializer {
 
-    public static final ComponentKey<PatronComponent> PATRON =
-            ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "patron"), PatronComponent.class);
-
     public static final ComponentKey<CosmeticComponent> COSMETIC =
             ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "cosmetic"), CosmeticComponent.class);
 
+    public static final ComponentKey<MemberComponent> MEMBER =
+            ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "member"), MemberComponent.class);
+
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerForPlayers(PATRON, SyncedPatronComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(COSMETIC, SyncedCosmeticComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(MEMBER, SyncedMemberComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 
 }

@@ -1,6 +1,7 @@
 package voideventhub.voidcore.repository;
 
 import voideventhub.voidcore.repository.models.EventApplication;
+import voideventhub.voidcore.repository.models.member.Member;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +26,11 @@ public interface Repository {
 
     List<EventApplication> getApplications();
 
+    List<Member> getDiscordMembers();
 
+    /**
+     * @return Discord member tied to the given UUID
+     */
+    Member getMember(UUID uuid);
 
 }

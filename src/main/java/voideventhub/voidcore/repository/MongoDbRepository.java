@@ -10,8 +10,12 @@ import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import voideventhub.voidcore.VoidCore;
+import voideventhub.voidcore.repository.models.member.DiscordMember;
 import voideventhub.voidcore.repository.models.EventApplication;
+import voideventhub.voidcore.repository.models.member.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +54,18 @@ public class MongoDbRepository implements Repository {
                 .applyConnectionString(new ConnectionString(connectionString))
                 .codecRegistry(combinedRegistry)
                 .build();
+    }
+
+    public boolean validConnection() {
+        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+            MongoDatabase database = mongoClient.getDatabase(voidDbName);
+            database.getCollection("server-activity").find().first();
+            return true;
+        } catch (Exception e) {
+            VoidCore.LOGGER.info("Failed to connect to MongoDB");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -91,6 +107,30 @@ public class MongoDbRepository implements Repository {
             VoidCore.LOGGER.info("Failed to get patrons from database");
             e.printStackTrace();
             return List.of();
+        }
+    }
+
+    public List<Member> getDiscordMembers() {
+        try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
+            MongoDatabase database = mongoClient.getDatabase(voidDbName);
+            MongoCollection<DiscordMember> members = database.getCollection("members", DiscordMember.class);
+            return members.find().into(new ArrayList<>());
+        } catch (Exception e) {
+            VoidCore.LOGGER.info("Failed to get Discord Members from database");
+            e.printStackTrace();
+            return List.of();
+        }
+    }
+
+    @Override
+    @Nullable
+    public Member getMember(@NotNull UUID uuid) {
+        try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
+            MongoDatabase database = mongoClient.getDatabase(voidDbName);
+            MongoCollection<DiscordMember> members = database.getCollection("members", DiscordMember.class);
+            return members.find(new Document("minecraft.uuid", uuid.toString())).first();
+        } catch (Exception e) {
+            return null;
         }
     }
 

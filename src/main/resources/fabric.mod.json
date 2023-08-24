@@ -39,8 +39,8 @@
 	},
 	"custom": {
 		"cardinal-components": [
-			"void-core:patron",
-			"void-core:cosmetic"
+			"void-core:cosmetic",
+			"void-core:member"
 		]
 	}
 }
