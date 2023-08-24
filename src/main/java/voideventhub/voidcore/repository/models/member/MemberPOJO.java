@@ -6,9 +6,9 @@ import org.bson.codecs.pojo.annotations.BsonProperty;
 import java.util.List;
 import java.util.UUID;
 
-public class DiscordMember implements Member {
+public class MemberPOJO implements Member {
 
-    public DiscordMember() {
+    public MemberPOJO() {
     }
 
     @BsonProperty("discord")

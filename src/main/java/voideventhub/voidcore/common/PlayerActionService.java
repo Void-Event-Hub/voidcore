@@ -6,7 +6,7 @@ import net.minecraft.text.Text;
 import voideventhub.voidcore.common.cardinal.SyncedMemberComponent;
 import voideventhub.voidcore.common.cardinal.VCComponents;
 import voideventhub.voidcore.repository.MongoDbRepository;
-import voideventhub.voidcore.repository.PlayerAction;
+import voideventhub.voidcore.repository.models.playerAction.PlayerActionType;
 import voideventhub.voidcore.repository.Repository;
 import voideventhub.voidcore.repository.models.member.Member;
 
@@ -22,15 +22,15 @@ public class PlayerActionService {
     }
 
     public void playerJoin(UUID playerId) {
-        playerAction(playerId, PlayerAction.JOIN_SERVER);
+        playerAction(playerId, PlayerActionType.JOIN_SERVER);
         updateMemberComponent(playerId);
     }
 
     public void playerLeave(UUID uuid) {
-        playerAction(uuid, PlayerAction.LEAVE_SERVER);
+        playerAction(uuid, PlayerActionType.LEAVE_SERVER);
     }
 
-    public void playerAction(UUID playerId, PlayerAction action) {
+    public void playerAction(UUID playerId, PlayerActionType action) {
         CompletableFuture.supplyAsync(() -> {
             Repository repository = MongoDbRepository.getInstance();
             return repository.writePlayerAction(action, playerId);
@@ -46,7 +46,7 @@ public class PlayerActionService {
                 return;
             }
 
-            if (action == PlayerAction.JOIN_SERVER) {
+            if (action == PlayerActionType.JOIN_SERVER) {
                 player.sendMessage(Text.of("§7Welcome to §9Void Event Hub§7!"));
             }
         }, playerManager.getServer());

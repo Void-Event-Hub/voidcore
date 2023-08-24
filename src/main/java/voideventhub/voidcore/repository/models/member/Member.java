@@ -3,6 +3,9 @@ package voideventhub.voidcore.repository.models.member;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Represents a member of the Discord server
+ */
 public interface Member {
 
     /**
