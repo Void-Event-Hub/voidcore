@@ -12,11 +12,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
-import voideventhub.voidcore.VoidCore;
-import voideventhub.voidcore.cardinal.CosmeticComponent;
-import voideventhub.voidcore.cardinal.VCComponents;
-import voideventhub.voidcore.item.VCItems;
-import voideventhub.voidcore.networking.VCNetwork;
+import voideventhub.voidcore.common.VoidCore;
+import voideventhub.voidcore.common.cardinal.CosmeticComponent;
+import voideventhub.voidcore.common.cardinal.VCComponents;
+import voideventhub.voidcore.common.item.VCItems;
+import voideventhub.voidcore.common.networking.VCNetwork;
 
 import java.util.List;
 import java.util.Map;

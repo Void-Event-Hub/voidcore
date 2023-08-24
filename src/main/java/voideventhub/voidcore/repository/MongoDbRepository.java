@@ -12,7 +12,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import voideventhub.voidcore.VoidCore;
+import voideventhub.voidcore.common.VoidCore;
 import voideventhub.voidcore.repository.models.member.DiscordMember;
 import voideventhub.voidcore.repository.models.EventApplication;
 import voideventhub.voidcore.repository.models.member.Member;

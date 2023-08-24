@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"voideventhub.voidcore.VoidCore"
+			"voideventhub.voidcore.common.VoidCore"
 		],
 		"client": [
 			"voideventhub.voidcore.client.VoidCoreClient"
 		],
 		"cardinal-components": [
-			"voideventhub.voidcore.cardinal.VCComponents"
+			"voideventhub.voidcore.common.cardinal.VCComponents"
 		]
 	},
 	"mixins": [

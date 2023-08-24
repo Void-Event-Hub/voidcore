@@ -2,7 +2,7 @@ package voideventhub.voidcore.client.screens;
 
 import net.minecraft.client.option.KeyBinding;
 import org.lwjgl.glfw.GLFW;
-import voideventhub.voidcore.VoidCore;
+import voideventhub.voidcore.common.VoidCore;
 
 public class VCKeyBinds {
 
