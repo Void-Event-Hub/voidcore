@@ -5,8 +5,8 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import voideventhub.voidcore.common.cardinal.SyncedCosmeticComponent;
-import voideventhub.voidcore.common.cardinal.VCComponents;
+import voideventhub.voidcore.common.components.SyncedCosmeticComponent;
+import voideventhub.voidcore.common.components.VCComponents;
 import voideventhub.voidcore.common.networking.packets.UpdateCosmeticsComponentC2SPacket;
 
 public class VCNetwork {

@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.entity.client;
+package voideventhub.voidcore.client.entity.client;
 
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;

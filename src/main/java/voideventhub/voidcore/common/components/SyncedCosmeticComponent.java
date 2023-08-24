@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.cardinal;
+package voideventhub.voidcore.common.components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.entity.Entity;

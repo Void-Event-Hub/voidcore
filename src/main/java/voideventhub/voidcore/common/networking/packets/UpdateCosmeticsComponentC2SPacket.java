@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import voideventhub.voidcore.common.VoidCore;
-import voideventhub.voidcore.common.cardinal.VCComponents;
+import voideventhub.voidcore.common.components.VCComponents;
 
 public class UpdateCosmeticsComponentC2SPacket {
 

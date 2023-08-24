@@ -22,7 +22,7 @@
 			"voideventhub.voidcore.client.VoidCoreClient"
 		],
 		"cardinal-components": [
-			"voideventhub.voidcore.common.cardinal.VCComponents"
+			"voideventhub.voidcore.common.components.VCComponents"
 		]
 	},
 	"mixins": [

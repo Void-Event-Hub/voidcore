@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.entity.client;
+package voideventhub.voidcore.client.entity.client;
 
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;

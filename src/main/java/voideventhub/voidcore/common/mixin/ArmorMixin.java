@@ -21,8 +21,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import voideventhub.voidcore.common.cardinal.CosmeticComponent;
-import voideventhub.voidcore.common.cardinal.VCComponents;
+import voideventhub.voidcore.common.components.CosmeticComponent;
+import voideventhub.voidcore.common.components.VCComponents;
 import voideventhub.voidcore.common.item.VCItems;
 
 import java.util.LinkedList;

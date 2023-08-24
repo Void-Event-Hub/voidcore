@@ -13,8 +13,8 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import voideventhub.voidcore.common.VoidCore;
-import voideventhub.voidcore.common.cardinal.CosmeticComponent;
-import voideventhub.voidcore.common.cardinal.VCComponents;
+import voideventhub.voidcore.common.components.CosmeticComponent;
+import voideventhub.voidcore.common.components.VCComponents;
 import voideventhub.voidcore.common.item.VCItems;
 import voideventhub.voidcore.common.networking.VCNetwork;
 

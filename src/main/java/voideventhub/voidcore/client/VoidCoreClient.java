@@ -7,8 +7,8 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import voideventhub.voidcore.common.VoidCore;
 import voideventhub.voidcore.client.screens.CosmeticsScreen;
 import voideventhub.voidcore.client.screens.VCKeyBinds;
-import voideventhub.voidcore.common.entity.client.AmethystArmorRenderer;
-import voideventhub.voidcore.common.entity.client.KnightArmorRenderer;
+import voideventhub.voidcore.client.entity.client.AmethystArmorRenderer;
+import voideventhub.voidcore.client.entity.client.KnightArmorRenderer;
 import voideventhub.voidcore.common.item.VCItems;
 
 public class VoidCoreClient implements ClientModInitializer {
