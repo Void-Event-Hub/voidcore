@@ -63,6 +63,11 @@ public class SyncedMemberComponent implements MemberComponent, AutoSyncedCompone
         return this.roles.stream().anyMatch(role -> role.getName().equals("Server Booster"));
     }
 
+    @Override
+    public boolean isPremiumMember() {
+        return this.isPatron() || this.isServerBooster();
+    }
+
     public void setDiscordId(long discordId) {
         this.discordId = discordId;
         sync();

@@ -44,4 +44,10 @@ public interface MemberComponent extends ComponentV3 {
      */
     boolean isServerBooster();
 
+    /**
+     *
+     * @return whether this member is patron or a server booster
+     */
+    boolean isPremiumMember();
+
 }
