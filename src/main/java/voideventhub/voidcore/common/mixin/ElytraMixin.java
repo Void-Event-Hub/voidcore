@@ -18,6 +18,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -42,9 +43,13 @@ public abstract class ElytraMixin <T extends LivingEntity, M extends BipedEntity
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
         AbstractClientPlayerEntity abstractClientPlayerEntity;
         ItemStack itemStack = livingEntity.getEquippedStack(EquipmentSlot.CHEST);
-//        if (!itemStack.isOf(Items.ELYTRA)) {
-//            return;
-//        }
+
+        // TODO: edit this if statement to render the elytra
+        if (!itemStack.isOf(Items.ELYTRA)) {
+            return;
+        }
+
+
         Identifier identifier = livingEntity instanceof AbstractClientPlayerEntity ? ((abstractClientPlayerEntity = (AbstractClientPlayerEntity)livingEntity).canRenderElytraTexture() && abstractClientPlayerEntity.getElytraTexture() != null ? abstractClientPlayerEntity.getElytraTexture() : (abstractClientPlayerEntity.canRenderCapeTexture() && abstractClientPlayerEntity.getCapeTexture() != null && abstractClientPlayerEntity.isPartVisible(PlayerModelPart.CAPE) ? abstractClientPlayerEntity.getCapeTexture() : SKIN)) : SKIN;
         matrixStack.push();
         matrixStack.translate(0.0, 0.0, 0.125);
