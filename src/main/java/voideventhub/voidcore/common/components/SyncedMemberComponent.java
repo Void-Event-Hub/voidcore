@@ -65,18 +65,22 @@ public class SyncedMemberComponent implements MemberComponent, AutoSyncedCompone
 
     public void setDiscordId(long discordId) {
         this.discordId = discordId;
+        sync();
     }
 
     public void setDiscordUsername(String discordUsername) {
         this.discordUsername = discordUsername;
+        sync();
     }
 
     public void setHasConfirmedMinecraft(boolean hasConfirmedMinecraft) {
         this.hasConfirmedMinecraft = hasConfirmedMinecraft;
+        sync();
     }
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+        sync();
     }
 
     @Override
@@ -114,5 +118,9 @@ public class SyncedMemberComponent implements MemberComponent, AutoSyncedCompone
         if (tag.contains("roles")) {
             this.roles = tag.getList("roles", NbtElement.LIST_TYPE).stream().map(nbt -> new Role((NbtCompound) nbt)).toList();
         }
+    }
+
+    private void sync() {
+        VCComponents.MEMBER.sync(provider);
     }
 }
