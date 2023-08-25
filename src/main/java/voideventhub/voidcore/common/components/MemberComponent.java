@@ -6,6 +6,9 @@ import voideventhub.voidcore.repository.models.member.Role;
 
 import java.util.List;
 
+/**
+ * Contains discord information about a player
+ */
 public interface MemberComponent extends ComponentV3 {
 
     /**

@@ -8,6 +8,9 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Contains the cosmetics a player has equipped
+ */
 public interface CosmeticComponent extends ComponentV3 {
 
     /**
