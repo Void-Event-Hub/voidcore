@@ -1,30 +1,42 @@
 package voideventhub.voidcore.repository;
 
-import voideventhub.voidcore.repository.models.EventApplication;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import voideventhub.voidcore.repository.models.event.Event;
+import voideventhub.voidcore.repository.models.member.Member;
+import voideventhub.voidcore.repository.models.playerAction.PlayerActionType;
 
-import java.util.List;
 import java.util.UUID;
 
+/**
+ * Repository interface for accessing the database, which holds data regarding things like discord data.
+ */
 public interface Repository {
 
     /**
      * Save a player action to the database
-     * @param playerAction The player action to save
+     * @param playerActionType The player action to save
      * @param uuid The UUID of the player entity
      * @return Whether the action was saved successfully
      */
-    boolean writePlayerAction(PlayerAction playerAction, UUID uuid);
+    boolean writePlayerAction(@NotNull PlayerActionType playerActionType, @NotNull UUID uuid);
 
     /**
-     * Get a list of players with the patron role
-     * @return A list of all patrons
+     * @return Discord member tied to the given UUID
      */
-    List<UUID> getPatrons();
+    Member getMember(@NotNull UUID uuid);
 
-    List<UUID> getAcceptedApplicants();
+    /**
+     * @return the current event being held
+     */
+    @Nullable
+    Event getCurrentEvent();
 
-    List<EventApplication> getApplications();
-
-
+    /**
+     * @param uuid id of the player
+     * @param eventId id of the event
+     * @return whether the player was accepted to the event
+     */
+    boolean wasAccepted(@NotNull UUID uuid, @NotNull String eventId);
 
 }
