@@ -129,9 +129,10 @@ public abstract class ArmorMixin<T extends LivingEntity, M extends BipedEntityMo
             return null;
         }
 
+        ArmorItem currentlyEquippedArmor = (ArmorItem) entity.getEquippedStack(slot).getItem();
         CosmeticComponent cosmetics = entity.getComponent(VCComponents.COSMETIC);
 
-        return cosmetics.getArmorCosmetic(slot);
+        return cosmetics.getArmorCosmetic(slot, currentlyEquippedArmor.getMaterial());
     }
 
 }

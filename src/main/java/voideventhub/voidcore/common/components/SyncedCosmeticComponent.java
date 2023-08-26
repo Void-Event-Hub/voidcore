@@ -9,14 +9,18 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import voideventhub.voidcore.common.item.CosmeticProvider;
+import voideventhub.voidcore.common.item.VCArmorMaterials;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedComponent {
 
     private final Entity provider;
 
-    private final HashMap<EquipmentSlot, @Nullable ArmorItem> armorCosmetics;
+    private final HashMap<EquipmentSlot, @Nullable ArmorMaterial> armorCosmetics;
 
     private @Nullable SwordItem swordItem;
     private @Nullable ShieldItem shieldItem;
@@ -30,8 +34,13 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
     }
 
     @Override
-    public @Nullable ArmorItem getArmorCosmetic(EquipmentSlot slot) {
-        return this.armorCosmetics.get(slot);
+    public @Nullable ArmorItem getArmorCosmetic(EquipmentSlot slot, ArmorMaterial currentlyEquipped) {
+        CosmeticProvider provider = CosmeticProvider.getInstance();
+        ArmorMaterial cosmeticMaterial = this.armorCosmetics.get(slot);
+        if (cosmeticMaterial != null) {
+            return provider.getArmorCosmetic(slot, cosmeticMaterial, currentlyEquipped);
+        }
+        return null;
     }
 
     @Override
@@ -55,8 +64,8 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
     }
 
     @Override
-    public void setArmorCosmetic(EquipmentSlot slot, @Nullable ArmorItem armorItem) {
-        this.armorCosmetics.put(slot, armorItem);
+    public void setArmorCosmetic(EquipmentSlot slot, @Nullable ArmorMaterial material) {
+        this.armorCosmetics.put(slot, material);
         sync();
     }
 
@@ -82,6 +91,21 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
     public void setShieldItem(@Nullable ShieldItem item) {
         this.shieldItem = item;
         sync();
+    }
+
+    @Override
+    public boolean hasFullSetEquipped(ArmorMaterial cosmeticMaterial) {
+        List<ArmorMaterial> equippedArmorCosmetics = this.armorCosmetics.values()
+                .stream()
+                .toList();
+
+        for (ArmorMaterial material : equippedArmorCosmetics) {
+            if (material != cosmeticMaterial) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
@@ -136,11 +160,11 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
     }
 
     private void readArmorCosmeticsFromNbt(NbtCompound tag) {
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
+        for (EquipmentSlot slot : armorSlots()) {
             if (tag.contains(slot.getName())) {
-                Identifier id = new Identifier(tag.getString(slot.getName()));
-                ArmorItem armorItem = (ArmorItem) Registry.ITEM.get(id);
-                this.armorCosmetics.put(slot, armorItem);
+                String materialName = tag.getString(slot.getName());
+                ArmorMaterial material = VCArmorMaterials.valueOf(materialName);
+                this.armorCosmetics.put(slot, material);
             } else {
                 this.armorCosmetics.put(slot, null);
             }
@@ -148,12 +172,19 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
     }
 
     private void writeArmorCosmeticsToNbt(NbtCompound tag) {
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            ArmorItem armorItem = this.armorCosmetics.get(slot);
-            if (armorItem != null) {
-                tag.putString(slot.getName(), Registry.ITEM.getId(armorItem).toString());
+        for (EquipmentSlot slot : armorSlots()) {
+            ArmorMaterial material = this.armorCosmetics.get(slot);
+            if (material != null) {
+                tag.putString(slot.getName(), material.getName().toUpperCase());
             }
         }
+    }
+
+    private List<EquipmentSlot> armorSlots() {
+        // equipment slots contain main and offhand, so we filter those out
+        return Arrays.stream(EquipmentSlot.values())
+                .filter(slot -> slot.getType() == EquipmentSlot.Type.ARMOR)
+                .toList();
     }
 
 }

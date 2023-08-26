@@ -9,15 +9,17 @@ import io.wispforest.owo.ui.core.Sizing;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import voideventhub.voidcore.common.VoidCore;
 import voideventhub.voidcore.common.components.CosmeticComponent;
 import voideventhub.voidcore.common.components.VCComponents;
-import voideventhub.voidcore.common.item.VCItems;
+import voideventhub.voidcore.common.item.ArmorCosmeticProvider;
+import voideventhub.voidcore.common.item.CosmeticProvider;
 import voideventhub.voidcore.common.networking.VCNetwork;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -36,71 +38,54 @@ public class CosmeticsScreen extends BaseUIModelScreen<FlowLayout> {
             return;
         }
 
+        ArmorCosmeticProvider provider = CosmeticProvider.getInstance();
+        List<ArmorMaterial> cosmeticMaterials = provider.getArmorCosmeticMaterials();
+
         rootComponent.child(Components.entity(Sizing.fixed(35), this.client.player).positioning(Positioning.relative(15, 50)));
-        for (Map.Entry<VCItems.CosmeticType, List<ArmorItem>> entry : VCItems.COSMETICS.entrySet()) {
-            VCItems.CosmeticType cosmeticType = entry.getKey();
-            String cosmeticId = cosmeticType.getId();
-            String cosmeticName = cosmeticId.substring(0, 1).toUpperCase() + cosmeticId.substring(1);
+        rootComponent.childById(FlowLayout.class, "cosmetics-list")
+                .child(getCosmeticCard("Clear", null));
+
+        for (ArmorMaterial cosmeticMaterial : cosmeticMaterials) {
+            String name = cosmeticMaterial.getName();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1);
 
             rootComponent.childById(FlowLayout.class, "cosmetics-list")
-                    .child(this.model.expandTemplate(FlowLayout.class, "cosmetic", Map.of(
-                                    "cosmetic-id", cosmeticId,
-                                    "name", cosmeticName
-                            )
-                    ));
-
-            ButtonComponent acceptButton = rootComponent.childById(ButtonComponent.class, cosmeticId + "-accept");
-            List<ArmorItem> armorItems = entry.getValue();
-            acceptButton.active(!hasFullSetEquipped(cosmeticType));
-
-            acceptButton.onPress(button -> {
-                if (armorItems.isEmpty()) {
-                    clearCosmetics();
-                } else {
-                    for (ArmorItem item : armorItems) {
-                        setCosmetic(item);
-                    }
-                }
-                this.client.setScreen(new CosmeticsScreen(this.parent)); // refresh screen to update buttons
-            });
+                    .child(getCosmeticCard(name, cosmeticMaterial));
         }
     }
 
-    private boolean hasFullSetEquipped(VCItems.CosmeticType cosmeticType) {
-        List<ArmorItem> armorItems = VCItems.COSMETICS.get(cosmeticType);
+    private FlowLayout getCosmeticCard(String name, ArmorMaterial cosmeticMaterial) {
+        FlowLayout card = this.model.expandTemplate(FlowLayout.class, "cosmetic", Map.of(
+                        "cosmetic-id", name,
+                        "name", name
+                )
+        );
+        ButtonComponent acceptButton = card.childById(ButtonComponent.class, name + "-accept");
 
-        CosmeticComponent component = this.client.player.getComponent(VCComponents.COSMETIC);
+        CosmeticComponent cosmeticComponent = this.client.player.getComponent(VCComponents.COSMETIC);
+        acceptButton.active(!cosmeticComponent.hasFullSetEquipped(cosmeticMaterial));
 
-        if (cosmeticType == VCItems.CosmeticType.NONE) {
-            for (EquipmentSlot slot : EquipmentSlot.values()) {
-                if (component.getArmorCosmetic(slot) != null) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        for (ArmorItem armorItem : armorItems) {
-            if (component.getArmorCosmetic(armorItem.getSlotType()) != armorItem) {
-                return false;
-            }
-        }
-        return true;
+        acceptButton.onPress(button -> {
+            setCosmetic(cosmeticMaterial);
+            this.client.setScreen(new CosmeticsScreen(this.parent)); // refresh screen to update buttons
+        });
+        return card;
     }
 
-    private void setCosmetic(ArmorItem item) {
+    private void setCosmetic(ArmorMaterial cosmeticMaterial) {
         PlayerEntity player = this.client.player;
-        player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(item.getSlotType(), item);
+
+        List<EquipmentSlot> armorSlots = Arrays.stream(EquipmentSlot.values())
+                .filter(slot -> slot.getType() == EquipmentSlot.Type.ARMOR)
+                .toList();
+
+        CosmeticComponent cosmeticComponent = player.getComponent(VCComponents.COSMETIC);
+
+        for (EquipmentSlot slot : armorSlots) {
+            cosmeticComponent.setArmorCosmetic(slot, cosmeticMaterial);
+        }
+
         VCNetwork.updatePlayerCosmetics(player);
     }
 
-    private void clearCosmetics() {
-        PlayerEntity player = this.client.player;
-        player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.HEAD, null);
-        player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.CHEST, null);
-        player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.LEGS, null);
-        player.getComponent(VCComponents.COSMETIC).setArmorCosmetic(EquipmentSlot.FEET, null);
-        VCNetwork.updatePlayerCosmetics(player);
-    }
 }

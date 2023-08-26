@@ -1,4 +1,4 @@
-package voideventhub.voidcore.client.entity.client;
+package voideventhub.voidcore.client.entity.amethyst;
 
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import voideventhub.voidcore.common.item.AmethystArmorItem;

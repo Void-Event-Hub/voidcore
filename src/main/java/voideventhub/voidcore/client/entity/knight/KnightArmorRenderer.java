@@ -1,4 +1,4 @@
-package voideventhub.voidcore.client.entity.client;
+package voideventhub.voidcore.client.entity.knight;
 
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -9,8 +9,8 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import voideventhub.voidcore.common.item.KnightArmorItem;
 
 public class KnightArmorRenderer extends GeoArmorRenderer<KnightArmorItem> {
-    public KnightArmorRenderer() {
-        super(new KnightArmorModel());
+    public KnightArmorRenderer(KnightArmorModel model) {
+        super(model);
 
         this.headBone = "armorHead";
         this.bodyBone = "armorBody";
