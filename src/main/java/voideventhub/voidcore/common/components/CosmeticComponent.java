@@ -17,12 +17,12 @@ public interface CosmeticComponent extends ComponentV3 {
     /**
      * Get the armor item cosmetic for the given slot specifically for what the player is currently wearing
      *
-     * @param slot the slot where the cosmetic is equipped
+     * @param slot              the slot where the cosmetic is equipped
      * @param currentlyEquipped the material of the currently equipped armor item
      * @return armor item cosmetic
      */
     @Nullable
-    ArmorItem getArmorCosmetic(EquipmentSlot slot, ArmorMaterial currentlyEquipped );
+    ArmorItem getArmorCosmetic(EquipmentSlot slot, ArmorMaterial currentlyEquipped);
 
     /**
      * @return the cape texture for the player
@@ -52,19 +52,22 @@ public interface CosmeticComponent extends ComponentV3 {
      * Set the armor material cosmetic for the given slot
      * Since the item can differ depending on what the player is wearing, we pass in the material to
      * specify which set of armor to use
-     * @param slot the slot where the cosmetic is equipped
+     *
+     * @param slot     the slot where the cosmetic is equipped
      * @param material the material of the armor
      */
     void setArmorCosmetic(EquipmentSlot slot, @Nullable ArmorMaterial material);
 
     /**
      * Set the cape texture for the player
+     *
      * @param capeTexture cape texture
      */
     void setCapeTexture(@Nullable Identifier capeTexture);
 
     /**
      * Set the elytra texture for the player
+     *
      * @param elytraTexture elytra texture
      */
     void setElytraTexture(@Nullable Identifier elytraTexture);
