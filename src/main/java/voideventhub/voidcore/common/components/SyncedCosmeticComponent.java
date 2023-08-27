@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import voideventhub.voidcore.common.item.CosmeticProvider;
+import voideventhub.voidcore.common.item.CosmeticRepository;
 import voideventhub.voidcore.common.item.VCArmorMaterials;
 
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class SyncedCosmeticComponent implements CosmeticComponent, AutoSyncedCom
 
     @Override
     public @Nullable ArmorItem getArmorCosmetic(EquipmentSlot slot, ArmorMaterial currentlyEquipped) {
-        CosmeticProvider provider = CosmeticProvider.getInstance();
+        CosmeticRepository provider = CosmeticRepository.getInstance();
         ArmorMaterial cosmeticMaterial = this.armorCosmetics.get(slot);
         if (cosmeticMaterial != null) {
             return provider.getArmorCosmetic(slot, cosmeticMaterial, currentlyEquipped);

@@ -130,7 +130,7 @@ public class VCItems {
             armorMaterial = ArmorMaterials.NETHERITE;
         }
 
-        ArmorCosmeticProvider provider = CosmeticProvider.getInstance();
+        ArmorCosmeticRepository provider = CosmeticRepository.getInstance();
         provider.setArmorCosmetic(item.getSlotType(), item.getMaterial(), armorMaterial, item);
 
         return registered;

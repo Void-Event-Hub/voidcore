@@ -15,8 +15,8 @@ import org.jetbrains.annotations.Nullable;
 import voideventhub.voidcore.common.VoidCore;
 import voideventhub.voidcore.common.components.CosmeticComponent;
 import voideventhub.voidcore.common.components.VCComponents;
-import voideventhub.voidcore.common.item.ArmorCosmeticProvider;
-import voideventhub.voidcore.common.item.CosmeticProvider;
+import voideventhub.voidcore.common.item.ArmorCosmeticRepository;
+import voideventhub.voidcore.common.item.CosmeticRepository;
 import voideventhub.voidcore.common.networking.VCNetwork;
 
 import java.util.Arrays;
@@ -38,8 +38,8 @@ public class CosmeticsScreen extends BaseUIModelScreen<FlowLayout> {
             return;
         }
 
-        ArmorCosmeticProvider provider = CosmeticProvider.getInstance();
-        List<ArmorMaterial> cosmeticMaterials = provider.getArmorCosmeticMaterials();
+        ArmorCosmeticRepository provider = CosmeticRepository.getInstance();
+        List<ArmorMaterial> cosmeticMaterials = provider.getCosmeticArmorMaterials();
 
         rootComponent.child(Components.entity(Sizing.fixed(35), this.client.player).positioning(Positioning.relative(15, 50)));
         rootComponent.childById(FlowLayout.class, "cosmetics-list")
