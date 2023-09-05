@@ -3,13 +3,19 @@ package voideventhub.voidcore.client.screens;
 import io.wispforest.owo.ui.base.BaseUIModelScreen;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.component.Components;
+import io.wispforest.owo.ui.component.EntityComponent;
 import io.wispforest.owo.ui.container.FlowLayout;
 import io.wispforest.owo.ui.core.Positioning;
 import io.wispforest.owo.ui.core.Sizing;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import voideventhub.voidcore.common.VoidCore;
@@ -41,7 +47,10 @@ public class CosmeticsScreen extends BaseUIModelScreen<FlowLayout> {
         ArmorCosmeticRepository provider = CosmeticRepository.getInstance();
         List<ArmorMaterial> cosmeticMaterials = provider.getCosmeticArmorMaterials();
 
-        rootComponent.child(Components.entity(Sizing.fixed(35), this.client.player).positioning(Positioning.relative(15, 50)));
+        ClientPlayerEntity entity = EntityComponent.createRenderablePlayer(this.client.player.getGameProfile());
+        entity.readNbt(this.client.player.writeNbt(new NbtCompound()));
+
+        rootComponent.child(Components.entity(Sizing.fixed(35), entity).lookAtCursor(true).positioning(Positioning.relative(15, 50)));
         rootComponent.childById(FlowLayout.class, "cosmetics-list")
                 .child(getCosmeticCard("Clear", null));
 
