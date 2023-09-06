@@ -2,6 +2,7 @@ package voideventhub.voidcore.common.components.team;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import net.minecraft.util.math.Vec3d;
+import org.jetbrains.annotations.Nullable;
 
 public interface TeamComponent extends ComponentV3 {
 
@@ -14,6 +15,6 @@ public interface TeamComponent extends ComponentV3 {
     /**
      * @return the spawn point of the team
      */
-    Vec3d getSpawn();
+    @Nullable Vec3d getSpawn();
 
 }

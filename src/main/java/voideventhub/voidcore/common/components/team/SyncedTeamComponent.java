@@ -8,6 +8,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import voideventhub.voidcore.common.VoidCore;
+import voideventhub.voidcore.common.components.VCComponents;
 
 public class SyncedTeamComponent implements TeamComponent, AutoSyncedComponent {
 
@@ -23,11 +25,13 @@ public class SyncedTeamComponent implements TeamComponent, AutoSyncedComponent {
         this.team = team;
         this.scoreboard = scoreboard;
         this.server = server;
+        VoidCore.LOGGER.error("SyncedTeamComponent constructor called");
     }
 
     @Override
     public void setSpawn(@Nullable Vec3d position) {
         this.spawn = position;
+        sync();
     }
 
     @Override
@@ -56,5 +60,9 @@ public class SyncedTeamComponent implements TeamComponent, AutoSyncedComponent {
         tag.putDouble("spawnX", this.spawn.getX());
         tag.putDouble("spawnY", this.spawn.getY());
         tag.putDouble("spawnZ", this.spawn.getZ());
+    }
+
+    private void sync() {
+        VCComponents.TEAM.sync(this.team);
     }
 }
