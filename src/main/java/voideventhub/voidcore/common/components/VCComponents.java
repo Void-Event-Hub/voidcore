@@ -16,10 +16,14 @@ public class VCComponents implements EntityComponentInitializer {
     public static final ComponentKey<MemberComponent> MEMBER =
             ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "member"), MemberComponent.class);
 
+    public static final ComponentKey<DeathComponent> DEATH =
+            ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "death"), DeathComponent.class);
+
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(COSMETIC, SyncedCosmeticComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(MEMBER, SyncedMemberComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(DEATH, SyncedDeathComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 
 }

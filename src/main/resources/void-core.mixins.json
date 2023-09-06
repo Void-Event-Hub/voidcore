@@ -3,12 +3,12 @@
   "package": "voideventhub.voidcore.common.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ArmorMixin"
   ],
   "client": [
     "AbstractClientPlayerEntityMixin",
     "ElytraMixin",
-    "HeldItemMixin"
+    "HeldItemMixin",
+    "ArmorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

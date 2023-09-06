@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CosmeticProvider implements ArmorCosmeticProvider {
+public class CosmeticRepository implements ArmorCosmeticRepository {
 
-    private static CosmeticProvider instance;
+    private static CosmeticRepository instance;
 
-    public static CosmeticProvider getInstance() {
+    public static CosmeticRepository getInstance() {
         if (instance == null) {
-            instance = new CosmeticProvider();
+            instance = new CosmeticRepository();
         }
         return instance;
     }
@@ -37,11 +37,11 @@ public class CosmeticProvider implements ArmorCosmeticProvider {
     }
 
     @Override
-    public List<ArmorMaterial> getArmorCosmeticMaterials() {
+    public List<ArmorMaterial> getCosmeticArmorMaterials() {
         return this.cosmetics.keySet().stream().toList();
     }
 
-    private CosmeticProvider() {
+    private CosmeticRepository() {
         this.cosmetics = new HashMap<>();
     }
 }

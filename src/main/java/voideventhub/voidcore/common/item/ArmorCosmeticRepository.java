@@ -6,7 +6,10 @@ import net.minecraft.item.ArmorMaterial;
 
 import java.util.List;
 
-public interface ArmorCosmeticProvider {
+/**
+ * Determiner of what cosmetic-variant needs to be displayed for the given armor slot and material
+ */
+public interface ArmorCosmeticRepository {
 
     /**
      * Get the cosmetic item for the given slot and material specifically for what the player is currently wearing
@@ -27,8 +30,8 @@ public interface ArmorCosmeticProvider {
     void setArmorCosmetic(EquipmentSlot slot, ArmorMaterial cosmetic, ArmorMaterial currentlyEquipped, ArmorItem item);
 
     /**
-     * @return all armor cosmetic materials
+     * @return all cosmetic armor materials
      */
-    List<ArmorMaterial> getArmorCosmeticMaterials();
+    List<ArmorMaterial> getCosmeticArmorMaterials();
 
 }

@@ -10,5 +10,7 @@ public class ConfigModel {
 
     public String mongodbUsername = "";
     public String mongodbPassword = "";
+    public int totalAllowedDeaths = 0;
+    public boolean enableDeathBan = false;
 
 }
