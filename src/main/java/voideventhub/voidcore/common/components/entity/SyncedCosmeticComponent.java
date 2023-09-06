@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.components;
+package voideventhub.voidcore.common.components.entity;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.entity.Entity;
@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import voideventhub.voidcore.common.components.VCComponents;
 import voideventhub.voidcore.common.item.CosmeticRepository;
 import voideventhub.voidcore.common.item.VCArmorMaterials;
 

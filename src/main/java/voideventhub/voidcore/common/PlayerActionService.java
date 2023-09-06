@@ -3,7 +3,7 @@ package voideventhub.voidcore.common;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import voideventhub.voidcore.common.components.SyncedMemberComponent;
+import voideventhub.voidcore.common.components.entity.SyncedMemberComponent;
 import voideventhub.voidcore.common.components.VCComponents;
 import voideventhub.voidcore.repository.MongoDbRepository;
 import voideventhub.voidcore.repository.models.playerAction.PlayerActionType;

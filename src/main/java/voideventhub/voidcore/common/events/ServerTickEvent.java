@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import voideventhub.voidcore.common.components.MemberComponent;
+import voideventhub.voidcore.common.components.entity.MemberComponent;
 import voideventhub.voidcore.common.components.VCComponents;
 
 import java.util.Random;

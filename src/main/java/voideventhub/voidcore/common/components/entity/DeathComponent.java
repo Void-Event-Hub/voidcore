@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.components;
+package voideventhub.voidcore.common.components.entity;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 

@@ -8,7 +8,7 @@ import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import voideventhub.voidcore.common.VoidCore;
-import voideventhub.voidcore.common.components.DeathComponent;
+import voideventhub.voidcore.common.components.entity.DeathComponent;
 import voideventhub.voidcore.common.components.VCComponents;
 
 import java.util.Date;
