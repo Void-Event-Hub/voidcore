@@ -10,6 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import voideventhub.voidcore.common.VoidCore;
 import voideventhub.voidcore.common.components.VCComponents;
+import voideventhub.voidcore.common.components.world.WorldComponent;
 
 public class StartEventCommand {
 
@@ -18,7 +19,14 @@ public class StartEventCommand {
                 .requires(source -> source.hasPermissionLevel(3))
                 .executes(context -> {
                     ServerWorld world = context.getSource().getWorld();
-                    world.getComponent(VCComponents.WORLD).startEvent();
+
+                    WorldComponent worldComponent = world.getComponent(VCComponents.WORLD);
+                    if (worldComponent.eventHasStarted()) {
+                        context.getSource().sendError(Text.of("Event has already started"));
+                        return 0;
+                    }
+
+                    worldComponent.startEvent();
 
                     world.getScoreboard().getTeams().forEach(team -> {
                         Vec3d spawn = team.getComponent(VCComponents.TEAM).getSpawn();
