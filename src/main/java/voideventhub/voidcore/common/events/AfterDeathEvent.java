@@ -21,6 +21,10 @@ public class AfterDeathEvent {
                 DeathComponent deathComponent = player.getComponent(VCComponents.DEATH);
                 deathComponent.incrementDeathCount();
 
+                if (!VoidCore.CONFIG.enableDeathBan()) {
+                    return;
+                }
+
                 if (deathComponent.getDeathCount() > VoidCore.CONFIG.totalAllowedDeaths()) {
                     banPlayer(player);
                     player.networkHandler.disconnect(Text.of("You have no lives left."));
@@ -31,6 +35,11 @@ public class AfterDeathEvent {
 
     private static void banPlayer(ServerPlayerEntity player) {
         MinecraftServer server = player.getServer();
+
+        if (server == null) {
+            return;
+        }
+
         PlayerManager playerManager = server.getPlayerManager();
         BannedPlayerList bannedPlayerList = playerManager.getUserBanList();
 
