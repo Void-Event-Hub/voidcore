@@ -13,7 +13,7 @@ import voideventhub.voidcore.common.components.entity.*;
 import voideventhub.voidcore.common.components.team.SyncedTeamComponent;
 import voideventhub.voidcore.common.components.team.TeamComponent;
 
-public class VCComponents implements EntityComponentInitializer {
+public class VCComponents implements EntityComponentInitializer, ScoreboardComponentInitializer {
 
     public static final ComponentKey<CosmeticComponent> COSMETIC =
             ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "cosmetic"), CosmeticComponent.class);
@@ -24,6 +24,9 @@ public class VCComponents implements EntityComponentInitializer {
     public static final ComponentKey<DeathComponent> DEATH =
             ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "death"), DeathComponent.class);
 
+    public static final ComponentKey<TeamComponent> TEAM =
+            ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(VoidCore.MOD_ID, "team"), TeamComponent.class);
+
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(COSMETIC, SyncedCosmeticComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
@@ -31,4 +34,8 @@ public class VCComponents implements EntityComponentInitializer {
         registry.registerForPlayers(DEATH, SyncedDeathComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 
+    @Override
+    public void registerScoreboardComponentFactories(ScoreboardComponentFactoryRegistry registry) {
+        registry.registerTeamComponent(TEAM, SyncedTeamComponent::new);
+    }
 }

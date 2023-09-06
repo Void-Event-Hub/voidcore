@@ -21,7 +21,10 @@
 		"client": [
 			"voideventhub.voidcore.client.VoidCoreClient"
 		],
-		"cardinal-components": [
+		"cardinal-components-entity": [
+			"voideventhub.voidcore.common.components.VCComponents"
+		],
+		"cardinal-components-team": [
 			"voideventhub.voidcore.common.components.VCComponents"
 		]
 	},
@@ -41,7 +44,8 @@
 		"cardinal-components": [
 			"void-core:cosmetic",
 			"void-core:member",
-			"void-core:death"
+			"void-core:death",
+			"void-core:team"
 		]
 	}
 }
