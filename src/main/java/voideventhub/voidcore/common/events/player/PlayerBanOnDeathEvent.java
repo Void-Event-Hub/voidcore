@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.events;
+package voideventhub.voidcore.common.events.player;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.server.BannedPlayerEntry;

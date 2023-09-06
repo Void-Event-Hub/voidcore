@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.events;
+package voideventhub.voidcore.common.events.server;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import voideventhub.voidcore.common.VoidCore;

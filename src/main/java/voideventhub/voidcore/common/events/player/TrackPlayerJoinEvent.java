@@ -1,4 +1,4 @@
-package voideventhub.voidcore.common.events;
+package voideventhub.voidcore.common.events.player;
 
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
