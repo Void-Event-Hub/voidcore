@@ -26,6 +26,9 @@
 		],
 		"cardinal-components-scoreboard": [
 			"voideventhub.voidcore.common.components.VCComponents"
+		],
+		"cardinal-components-world": [
+			"voideventhub.voidcore.common.components.VCComponents"
 		]
 	},
 	"mixins": [
@@ -45,7 +48,8 @@
 			"void-core:cosmetic",
 			"void-core:member",
 			"void-core:death",
-			"void-core:team"
+			"void-core:team",
+			"void-core:world"
 		]
 	}
 }

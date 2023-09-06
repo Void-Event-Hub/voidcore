@@ -18,6 +18,8 @@ public class StartEventCommand {
                 .requires(source -> source.hasPermissionLevel(3))
                 .executes(context -> {
                     ServerWorld world = context.getSource().getWorld();
+                    world.getComponent(VCComponents.WORLD).startEvent();
+
                     world.getScoreboard().getTeams().forEach(team -> {
                         Vec3d spawn = team.getComponent(VCComponents.TEAM).getSpawn();
                         if (spawn == null) {
