@@ -40,7 +40,8 @@
 	"custom": {
 		"cardinal-components": [
 			"void-core:cosmetic",
-			"void-core:member"
+			"void-core:member",
+			"void-core:death"
 		]
 	}
 }
