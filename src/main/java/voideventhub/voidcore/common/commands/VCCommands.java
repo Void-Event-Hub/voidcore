@@ -6,6 +6,8 @@ public class VCCommands {
 
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            SetTeamSpawnCommand.register(dispatcher);
+            StartEventCommand.register(dispatcher);
         });
     }
 }
