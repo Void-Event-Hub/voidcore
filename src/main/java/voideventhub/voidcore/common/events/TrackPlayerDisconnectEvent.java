@@ -5,7 +5,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import voideventhub.voidcore.common.PlayerActionService;
 import voideventhub.voidcore.common.VoidCore;
 
-public class PlayerDisconnectEvent {
+public class TrackPlayerDisconnectEvent {
 
     public static void register() {
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {

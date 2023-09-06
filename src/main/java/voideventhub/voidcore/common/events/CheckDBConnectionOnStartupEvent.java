@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import voideventhub.voidcore.common.VoidCore;
 import voideventhub.voidcore.repository.MongoDbRepository;
 
-public class ServerStartupEvent {
+public class CheckDBConnectionOnStartupEvent {
 
     public static void register() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {

@@ -10,7 +10,7 @@ import voideventhub.voidcore.common.components.VCComponents;
 
 import java.util.Random;
 
-public class ServerTickEvent {
+public class SpawnPlayerParticleTrailEvent {
 
     private static int tick = 0;
 
@@ -25,9 +25,9 @@ public class ServerTickEvent {
             server.getPlayerManager()
                     .getPlayerList()
                     .stream()
-                    .filter(ServerTickEvent::isPremiumMember)
+                    .filter(SpawnPlayerParticleTrailEvent::isPremiumMember)
                     .filter(Entity::isSprinting)
-                    .forEach(ServerTickEvent::spawnSprintTrailParticles);
+                    .forEach(SpawnPlayerParticleTrailEvent::spawnSprintTrailParticles);
         });
     }
 

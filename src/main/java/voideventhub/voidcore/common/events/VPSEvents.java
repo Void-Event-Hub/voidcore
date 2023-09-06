@@ -3,11 +3,11 @@ package voideventhub.voidcore.common.events;
 public class VPSEvents {
 
     public static void register() {
-        ServerStartupEvent.register();
-        ServerTickEvent.register();
-        PlayerDisconnectEvent.register();
-        PlayerJoinEvent.register();
-        AfterDeathEvent.register();
+        CheckDBConnectionOnStartupEvent.register();
+        SpawnPlayerParticleTrailEvent.register();
+        TrackPlayerDisconnectEvent.register();
+        TrackPlayerJoinEvent.register();
+        PlayerBanOnDeathEvent.register();
     }
 
 }

@@ -5,7 +5,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import voideventhub.voidcore.common.PlayerActionService;
 import voideventhub.voidcore.common.VoidCore;
 
-public class PlayerJoinEvent {
+public class TrackPlayerJoinEvent {
 
     public static void register() {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {

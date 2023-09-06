@@ -13,7 +13,7 @@ import voideventhub.voidcore.common.components.VCComponents;
 
 import java.util.Date;
 
-public class AfterDeathEvent {
+public class PlayerBanOnDeathEvent {
 
     public static void register() {
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
