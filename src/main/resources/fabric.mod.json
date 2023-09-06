@@ -24,7 +24,7 @@
 		"cardinal-components-entity": [
 			"voideventhub.voidcore.common.components.VCComponents"
 		],
-		"cardinal-components-team": [
+		"cardinal-components-scoreboard": [
 			"voideventhub.voidcore.common.components.VCComponents"
 		]
 	},
